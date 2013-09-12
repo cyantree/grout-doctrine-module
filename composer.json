@@ -1,0 +1,19 @@
+{
+    "name": "cyantree/grout-doctrine-module",
+    "type": "grout-module",
+    "description": "module which connects to the ORM Doctrine",
+    "keywords": ["grout", "orm", "database", "doctrine"],
+    "homepage": "https://github.com/cyantree/grout-doctrine-module",
+    "license": "LGPL-3.0",
+    "authors": [
+        {"name": "Christoph Schreiber", "email": "mail@cyantree.com"}
+    ],
+    "require": {
+        "cyantree/grout-module-installer": "0.0.*",
+        "doctrine/common": "2.3.0",
+        "doctrine/orm": "2.*"
+    },
+    "extra": {
+        "grout-module-name": "Cyantree/DoctrineModule"
+    }
+}
