@@ -29,8 +29,8 @@ class DoctrineModule extends Module
         if(!$this->_entityManager){
             $c = $this->app->config;
 
-            $cache = new FilesystemCache($this->app->parseUri($this->moduleConfig->cacheDirectory));
-            $proxies = $this->app->parseUri($this->moduleConfig->proxyDirectory);
+            $cache = new FilesystemCache($this->app->cacheStorage->createStorage($this->id . '\\Cache\\'));
+            $proxies = $this->app->dataStorage->createStorage($this->id . '\\Proxies\\');
             $config = Setup::createConfiguration($c->developmentMode, $proxies, $cache);
             $driver = new StaticPHPDriver($this->moduleConfig->entityPaths);
             $config->setMetadataDriverImpl($driver);

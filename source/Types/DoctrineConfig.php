@@ -6,9 +6,6 @@ class DoctrineConfig
     public $useCache = true;
     public $useProxies = true;
 
-    public $cacheDirectory = 'data://doctrine/cache';
-    public $proxyDirectory = 'data://doctrine/proxies';
-
     public $entityPaths = array();
 
     public $logQueries = false;
