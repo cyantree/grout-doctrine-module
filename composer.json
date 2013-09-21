@@ -10,6 +10,7 @@
     ],
     "require": {
         "cyantree/grout-module-installer": "0.0.*",
+        "cyantree/grout": ">=0.0.7",
         "doctrine/common": "2.3.0",
         "doctrine/orm": "2.*"
     },
