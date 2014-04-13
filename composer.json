@@ -1,5 +1,6 @@
 {
     "name": "cyantree/grout-doctrine-module",
+    "version": "1.0",
     "type": "grout-module",
     "description": "module which connects to the ORM Doctrine",
     "keywords": ["grout", "orm", "database", "doctrine"],
@@ -8,11 +9,14 @@
     "authors": [
         {"name": "Christoph Schreiber", "email": "mail@cyantree.com"}
     ],
+    "autoload": {
+        "psr-4": {
+            "Grout\\Cyantree\\DoctrineModule\\": ["", "source/"]
+        }
+    },
     "require": {
-        "cyantree/grout-module-installer": "0.0.*",
-        "cyantree/grout": ">=0.0.7",
-        "doctrine/common": "2.3.0",
-        "doctrine/orm": "2.*"
+        "cyantree/grout": "1.*",
+        "doctrine/orm": "2.4.*"
     },
     "extra": {
         "grout-module-name": "Cyantree/DoctrineModule"
