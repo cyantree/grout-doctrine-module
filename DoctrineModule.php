@@ -6,7 +6,6 @@ use Cyantree\Grout\App\Module;
 use Cyantree\Grout\Logging;
 use Cyantree\Grout\Tools\ArrayTools;
 use Doctrine\Common\Cache\FilesystemCache;
-use Doctrine\Common\Persistence\Mapping\Driver\PHPDriver;
 use Doctrine\Common\Persistence\Mapping\Driver\StaticPHPDriver;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
