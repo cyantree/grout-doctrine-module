@@ -1,6 +1,6 @@
 {
     "name": "cyantree/grout-doctrine-module",
-    "version": "1.1",
+    "version": "1.2",
     "type": "grout-module",
     "description": "module which connects to the ORM Doctrine",
     "keywords": ["grout", "orm", "database", "doctrine"],
@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "cyantree/grout": ">=1.0,<3.0",
+        "cyantree/grout": ">=3.0,<4.0",
         "doctrine/orm": "2.4.*"
     },
     "extra": {

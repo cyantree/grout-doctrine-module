@@ -3,6 +3,7 @@ namespace Grout\Cyantree\DoctrineModule;
 
 use Cyantree\Grout\App\GroutAppConfig;
 use Cyantree\Grout\App\Module;
+use Cyantree\Grout\Event\Event;
 use Cyantree\Grout\Logging;
 use Cyantree\Grout\Tools\ArrayTools;
 use Doctrine\Common\Cache\FilesystemCache;
@@ -24,6 +25,15 @@ class DoctrineModule extends Module
     {
         $this->app->configs->setDefaultConfig($this->id, new DoctrineConfig());
         $this->moduleConfig = $this->app->configs->getConfig($this->id);
+
+        $this->app->events->join('destroy', array($this, 'onDestroy'));
+    }
+
+    public function onDestroy(Event $event)
+    {
+        if ($this->_entityManager) {
+            $this->_entityManager->close();
+        }
     }
 
     /** @return EntityManager */
