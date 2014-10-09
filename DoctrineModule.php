@@ -19,7 +19,7 @@ class DoctrineModule extends Module
     public $moduleConfig;
 
     /** @var EntityManager */
-    private $_entityManager;
+    private $entityManager;
 
     public function init()
     {
@@ -31,15 +31,15 @@ class DoctrineModule extends Module
 
     public function onDestroy(Event $event)
     {
-        if ($this->_entityManager) {
-            $this->_entityManager->close();
+        if ($this->entityManager) {
+            $this->entityManager->close();
         }
     }
 
     /** @return EntityManager */
     public function getEntityManager()
     {
-        if(!$this->_entityManager){
+        if (!$this->entityManager) {
             /** @var GroutAppConfig $c */
             $c = $this->app->getConfig();
 
@@ -49,11 +49,11 @@ class DoctrineModule extends Module
             $driver = new StaticPHPDriver($this->moduleConfig->entityPaths);
             $config->setMetadataDriverImpl($driver);
 
-            if($c->developmentMode && $this->moduleConfig->logQueries){
+            if ($c->developmentMode && $this->moduleConfig->logQueries) {
                 $config->setSQLLogger(new DoctrineLogger($this->app));
             }
 
-            $this->_entityManager = EntityManager::create($this->moduleConfig->connectionDetails, $config);
+            $this->entityManager = EntityManager::create($this->moduleConfig->connectionDetails, $config);
 
             $driver = ArrayTools::get($this->moduleConfig->connectionDetails, 'driver');
 
@@ -61,11 +61,11 @@ class DoctrineModule extends Module
                 $charset = ArrayTools::get($this->moduleConfig->connectionDetails, 'charset');
 
                 if ($charset) {
-                    $this->_entityManager->getConnection()->exec('SET NAMES `' . $charset . '`');
+                    $this->entityManager->getConnection()->exec('SET NAMES `' . $charset . '`');
                 }
             }
         }
 
-        return $this->_entityManager;
+        return $this->entityManager;
     }
 }

@@ -7,15 +7,15 @@ use Doctrine\DBAL\Logging\SQLLogger;
 class DoctrineLogger implements SQLLogger
 {
     /** @var \Cyantree\Grout\App\App */
-    private $_app;
+    private $app;
 
     public function __construct(App $app)
     {
-        $this->_app = $app;
+        $this->app = $app;
     }
     public function startQuery($sql, array $params = null, array $types = null)
     {
-        $this->_app->events->trigger('log', $sql);
+        $this->app->events->trigger('log', $sql);
 
 //        if ($params) {
 //            var_dump($params);
