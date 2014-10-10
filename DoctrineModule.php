@@ -68,4 +68,11 @@ class DoctrineModule extends Module
 
         return $this->entityManager;
     }
+
+    public function destroy()
+    {
+        if ($this->entityManager) {
+            $this->entityManager->close();
+        }
+    }
 }
