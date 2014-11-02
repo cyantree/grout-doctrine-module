@@ -10,13 +10,6 @@ class DoctrineConfig
 
     public $logQueries = false;
 
-    public $connectionDetails = array();
-    /*
-     *  'type' => 'pdo_mysql',
-     *  'host' => '127.0.0.1',
-     *  'user' => '',
-     *  'password' => '',
-     *  'name' => '',
-     *  'tablePrefix' => 'lp',
-     */
+    /** @var ConnectionDetailsInterface */
+    public $connectionDetails;
 }

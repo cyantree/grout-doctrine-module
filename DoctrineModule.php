@@ -4,9 +4,6 @@ namespace Grout\Cyantree\DoctrineModule;
 use Cyantree\Grout\App\GroutAppConfig;
 use Cyantree\Grout\App\Module;
 use Cyantree\Grout\Event\Event;
-use Cyantree\Grout\Logging;
-use Cyantree\Grout\Tools\ArrayTools;
-use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Common\Persistence\Mapping\Driver\StaticPHPDriver;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -53,17 +50,11 @@ class DoctrineModule extends Module
                 $config->setSQLLogger(new DoctrineLogger($this->app));
             }
 
-            $this->entityManager = EntityManager::create($this->moduleConfig->connectionDetails, $config);
+            $connectionDetails = $this->moduleConfig->connectionDetails;
 
-            $driver = ArrayTools::get($this->moduleConfig->connectionDetails, 'driver');
+            $this->entityManager = EntityManager::create($connectionDetails->toConfigurationArray(), $config);
 
-            if (in_array($driver, array('pdo_mysql', 'mysql', 'mysqli'))) {
-                $charset = ArrayTools::get($this->moduleConfig->connectionDetails, 'charset');
-
-                if ($charset) {
-                    $this->entityManager->getConnection()->exec('SET NAMES `' . $charset . '`');
-                }
-            }
+            $connectionDetails->onConnected($this->entityManager->getConnection());
         }
 
         return $this->entityManager;
