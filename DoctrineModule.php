@@ -28,7 +28,7 @@ class DoctrineModule extends Module
 
     public function onDestroy(Event $event)
     {
-        if ($this->entityManager) {
+        if ($this->entityManager && $this->entityManager->isOpen()) {
             $this->entityManager->close();
         }
     }
